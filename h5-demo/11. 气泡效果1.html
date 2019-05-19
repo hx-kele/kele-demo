@@ -1,0 +1,91 @@
+<!DkeleNodeTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>气泡效果1</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: black;
+            }
+
+            #kele {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                background-color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="kele" width="400" height="400"></canvas>
+    </body>
+    <script type="text/javascript">
+        window.onload = function () {
+            var keleNode = document.querySelector("#kele");
+            if (keleNode.getContext) {
+                var ctx = keleNode.getContext("2d");
+
+                var arr = [];
+
+                setInterval(function () {
+                    // 清除画布
+                    ctx.clearRect(0, 0, keleNode.width, keleNode.height);
+                    // 设置动画
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i].alp <= 0) {
+                            arr.splice(i, 1);
+                        }
+                        arr[i].r++;
+                        arr[i].alp -= 0.01;
+
+                    }
+
+                    // 遍历循环数组来绘制圆
+                    for (var i = 0; i < arr.length; i++) {
+                        ctx.save();
+                        ctx.fillStyle = "rgba(" + arr[i].red + ", " + arr[i].green + ", " + arr[i].blue +
+                            ", " +
+                            arr[i].alp + ")";
+                        ctx.beginPath();
+                        ctx.arc(arr[i].x, arr[i].y, arr[i].r, 0, 360 * Math.PI / 180);
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }, 1000 / 60)
+
+
+                // 设置定时器注入数组信息：坐标x，y，半径r
+                setInterval(function () {
+                    var x = Math.random() * keleNode.width;
+                    var y = Math.random() * keleNode.height;
+                    var r = 10;
+                    var red = Math.round(Math.random() * 255);
+                    var green = Math.round(Math.random() * 255);
+                    var blue = Math.round(Math.random() * 255);
+                    alp = 1;
+                    arr.push({
+                        x: x,
+                        y: y,
+                        r: r,
+                        red: red,
+                        green: green,
+                        blue: blue,
+                        alp: alp
+                    })
+                }, 200)
+
+            }
+        }
+    </script>
+
+    </html>

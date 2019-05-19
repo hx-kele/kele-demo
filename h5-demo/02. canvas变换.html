@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>canvas 变换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: skyblue;
+        }
+
+        #kele {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            position: absolute;
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="kele" width="600" height="600"></canvas>
+</body>
+<script>
+    window.onload = function () {
+        var flag = 0;
+        var scale = 5;
+        var flagScale = 1;
+        var keleNode = document.getElementById("kele");
+        if (keleNode.getContext) {
+            var ctx = keleNode.getContext("2d");
+
+            ctx.save();
+            ctx.fillStyle = "#FFA500";
+            ctx.translate(300, 300);
+            ctx.beginPath();
+            ctx.fillRect(-100, -100, 200, 200);
+            ctx.restore();
+            setInterval(function () {
+                flag++;
+                ctx.clearRect(0, 0, 600, 600);
+                ctx.save();
+                ctx.fillStyle = "#FFA500";
+                ctx.translate(300, 300);
+                ctx.rotate(flag * Math.PI / 180);
+
+                if (scale == 100) {
+                    flagScale = -1;
+                } else if (scale == 5) {
+                    flagScale = 1;
+                }
+                scale += flagScale;
+
+                ctx.scale(scale / 50, scale / 50);
+
+
+                ctx.beginPath();
+                ctx.fillRect(-100, -100, 200, 200);
+                ctx.restore();
+            }, 1000 / 60)
+
+        }
+
+    }
+</script>
+
+</html>

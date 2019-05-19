@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: greenyellow;
+        }
+
+        #kele {
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="kele" width="" height=""></canvas>
+</body>
+<script>
+
+    window.onload = function () {
+
+        var keleNode = document.getElementById("kele");
+        keleNode.width = document.documentElement.clientWidth;
+        keleNode.height = document.documentElement.clientHeight;
+
+        if (keleNode.getContext) {
+            var value = 0;
+            var ctx = keleNode.getContext("2d");
+            var flag = 0;
+
+            setInterval(function () {
+
+                ctx.clearRect(0, 0, keleNode.width, keleNode.height);
+                
+                value += 10;
+                flag++;
+                if (flag == 9) {
+                    flag = 1;
+                }
+
+                var img = new Image();
+                img.src = "img/q_r" + (flag) + ".jpg";
+                img.onload = function () {
+                    fly(this);
+                }
+
+
+            }, 100)
+
+            function fly(img) {
+                ctx.drawImage(img, value, 0);
+            }
+
+        }
+    }
+    
+</script>
+
+</html>

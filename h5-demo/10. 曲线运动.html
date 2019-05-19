@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>曲线运动</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .kele {
+            position: absolute;
+            left: 200px;
+            top: 300px;
+            width: 10px;
+            height: 10px;
+            background: black
+        }
+
+        .box {
+            position: absolute;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kele"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var keleNode = document.querySelector(".kele");
+        var startX = keleNode.offsetLeft;
+        var startY = keleNode.offsetTop;
+        //角度
+        var deg = 0;
+        var step = 100;
+
+
+        setInterval(function () {
+            deg++;
+
+            keleNode.style.left = startX + (deg * Math.PI / 180) * step / 2 + 'px';
+            keleNode.style.top = startY + Math.sin(deg * Math.PI / 180) * step * 2 + "px";
+
+            var boxNode = document.createElement("div");
+            boxNode.classList.add("box");
+            boxNode.style.left = keleNode.offsetLeft + "px";
+            boxNode.style.top = keleNode.offsetTop + "px";
+            document.body.appendChild(boxNode);
+
+        }, 1000 / 60)
+    }
+</script>
+
+
+</html>

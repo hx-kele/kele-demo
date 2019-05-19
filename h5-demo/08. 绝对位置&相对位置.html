@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>绝对位置&相对位置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onload = function () {
+        // 获取元素的绝对位置：元素到body的距离
+        /* Element.getBoundingClientRect() + 滚动条滚动时元素滚动的距离 = 绝对位置;
+            该方法会返回元素大小以及相对视口的位置；
+
+            代表元素border-box的尺寸：
+            height
+            width
+
+            元素左上角的相对位置：
+            left
+            top
+
+            元素右下角的相对位置：
+            right
+            bottom       
+         */
+        // while循环叠加offsetParent的offsetTop&offsetLeft
+        getPointAb();
+
+        function getPointAb(node) {
+            var x = 0;
+            var y = 0;
+            while (node) {
+                x += node.offsetLeft;
+                y += node.offsetTop;
+                node = node.offsetParent;
+            }
+            return {
+                x: x,
+                y: y
+            };
+        }
+
+        // 获取元素的相对位置：元素到视口的距离  
+        /* Element.getBoundingClientRect();
+            该方法会返回元素大小以及相对视口的位置；
+
+            代表元素border-box的尺寸：
+            height
+            width
+
+            元素左上角的相对位置：
+            left
+            top
+
+            元素右下角的相对位置：
+            right
+            bottom       
+         */
+        getPointRe();
+        function getPointRe(node) {
+            var x = 0;
+            var y = 0;
+            while (node) {
+                x += node.offsetLeft;
+                y += node.offsetTop;
+                node = node.offsetParent;
+            }
+
+            var L = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var T = document.documentElement.scrollTop || document.body.scrollTop;
+
+            return {
+                x: x - L,
+                y: y - T
+            };
+        }
+    }
+</script>
+
+</html>
