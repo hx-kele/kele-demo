@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>光斑动画</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        html,body{height: 100%;overflow: hidden;background-color: black;text-align: center;}
+
+        h1{
+            margin-top: 50px;
+            display: inline-block;
+            color: rgba(255,255,255,.3);
+            font-size: 50px;
+            background: linear-gradient(120deg,rgba(255,255,255,0) 10px,rgba(255,255,255,1) 70px,rgba(255,255,255,0) 130px);
+            -webkit-background-clip: text;
+            background-repeat: no-repeat;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="kele">KELE-CSS-（Cascading Style Sheets）-Demo</h1>
+</body>
+<script>
+    var h1 = document.getElementById("kele");
+    var length = h1.offsetWidth + 60;
+    var flag = 0;
+    setInterval(function(){
+        flag+=10;
+        if(flag>length){
+            flag=0;
+        }
+        h1.style.backgroundPosition = flag + "px";
+    },1000/60)
+</script>
+</html>

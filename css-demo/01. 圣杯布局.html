@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局</title>
+    <style>
+        /* 总结：
+                首先用浮动搭建完整的框架结构；
+                通过设置margin-left数值来调整左右盒模型的位置，使盒模型处于同一行；
+                通过设置父级盒模型的padding值，来放置左右盒模型；
+                通过使用相对定位，将左右盒模型的位置调整至两侧；
+                通过设置列的padding-bottom和margin-bottom为相抵消的正负值，父容器设置超过隐藏实现等高布局。
+         */
+        *{margin: 0;padding: 0;}
+        .clearfix{
+            zoom: 1;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        body{min-width: 800px;}
+        .header,
+        .footer{
+            height: 200px;
+            text-align: center;
+            border: 2px solid gray;
+            background-color: greenyellow;
+        }
+        .middle,.left,.right{
+            padding-bottom: 10000px;
+            margin-bottom: -10000px;
+        }
+        .content{
+            padding: 0 200px;
+            overflow: hidden;
+        }
+        .middle{
+            float: left;
+            width: 100%;
+            background-color: red;
+        }
+        .left{
+            position: relative;
+            left: -200px;
+            float: left;
+            width: 200px;
+            margin-left: -100%;
+            background-color: orange;
+        }
+        .right{
+            position: relative;
+            right: -200px;
+            margin-left: -200px;
+            float: left;
+            width: 200px;
+            background-color: skyblue;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <div class="content clearfix">
+        <div class="middle">middle</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

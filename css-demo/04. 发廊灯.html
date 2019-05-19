@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发廊灯</title>
+    <style>
+
+        /* 
+            总结：通过设置线性渐变来绘制发廊灯，通过设置定时器或者CSS设置动画效果。
+         */
+
+        *{margin: 0;padding: 0;}
+        html,body{height: 100%;overflow: hidden;}
+        #wrap{
+            width: 40px;
+            height: 300px;
+            border: 1px solid skyblue;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        #wrap > .inner{
+            height: 600px;
+            background: repeating-linear-gradient(135deg,black 0px,black 10px,white 10px,white 20px);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="inner"></div>
+    </div>
+</body>
+
+
+<script>
+
+    var inner = document.querySelector(".inner");
+    var flag = 0;
+    setInterval(function(){
+        flag++;
+        if(flag==300){
+            flag=0
+        }
+        inner.style.marginTop = -flag+"px";
+    },10)
+
+</script>
+
+</html>

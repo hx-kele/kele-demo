@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>多棱柱旋转</title>
+    <style>
+        /* 
+            总结：
+                n 边形的外角和为：360deg；
+                n边形内角：180 - 360/n
+         */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #wrap {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+            perspective: 500px;
+
+        }
+
+        #wrap>.box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 300px;
+            height: 300px;
+
+            transition: 10s transform;
+            transform-style: preserve-3d;
+        }
+
+        #wrap>.box>div {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(173, 255, 47, 0.5);
+            text-align: center;
+            font: 50px/300px "微软雅黑";
+            backface-visibility: hidden;
+
+        }
+
+        #wrap:hover>.box {
+            transform: rotateY(-360deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="box">
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        createPrism(28);
+    }
+
+    function createPrism(n) {
+        var boxNode = document.querySelector("#wrap > .box");
+        var styleNode = document.createElement("style");
+
+        // 外角和内角
+        var degOut = 360 / n;
+        var degIn = 180 - 360 / n;
+
+
+
+        var boxText = "";
+        var cssText = "";
+
+        for (var i = 0; i < n; i++) {
+            boxText += "<div>" + (i + 1) + "</div>";
+            cssText += "#wrap > .box > div:nth-child(" + (i + 1) + "){transform: rotateY(" + (i * degOut) + "deg);}";
+        }
+        boxNode.innerHTML = boxText;
+
+        // 棱长
+        var prismNode = document.querySelector("#wrap > .box > div");
+        var length = prismNode.offsetWidth;
+
+        cssText += "#wrap > .box{transform-origin: center center -" + (length / 2 * Math.tan((degIn / 2) * Math.PI /
+            180)) + "px;}";
+        cssText += "#wrap > .box > div{transform-origin: center center -" + (length / 2 * Math.tan((degIn / 2) * Math
+            .PI / 180)) + "px;}";
+
+
+
+        // cssText += "#wrap>.box {transform-origin: center center " + (length / 2 * Math.tan((degIn / 2) * Math.PI /
+        //     180)) + ";}"
+        // cssText += "#wrap>.box>div {transform-origin: center center " + (length / 2 * Math.tan((degIn / 2) * Math.PI /
+        //     180)) + ";}"
+
+
+        styleNode.innerHTML = cssText;
+        document.head.appendChild(styleNode);
+
+    }
+</script>
+
+</html>

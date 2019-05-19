@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 400px;
+            height: 400px;
+            border: 1px solid greenyellow;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -200px;
+        }
+
+        ul>li {
+            list-style: none;
+            width: 4px;
+            height: 20px;
+            background-color: skyblue;
+            position: absolute;
+            left: 198px;
+            top: 0;
+            transform-origin: center 200px;
+        }
+
+        ul>li:nth-child(5n+1) {
+            height: 28px;
+            background-color: orange;
+        }
+
+        #wrap>.hour {
+            position: absolute;
+            left: 196px;
+            top: 140px;
+            width: 8px;
+            height: 60px;
+            background-color: grey;
+            transform-origin: center bottom;
+        }
+
+        #wrap>.min {
+            position: absolute;
+            left: 198px;
+            top: 100px;
+            width: 4px;
+            height: 100px;
+            background-color: chartreuse;
+            transform-origin: center bottom;
+        }
+
+        #wrap>.sec {
+            position: absolute;
+            top: 80px;
+            left: 199px;
+            width: 2px;
+            height: 120px;
+            background-color: red;
+            transform-origin: center bottom;
+        }
+
+        #wrap>.icon {
+            position: absolute;
+            left: 185px;
+            top: 185px;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <ul>
+        </ul>
+        <div class="hour"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+        <div class="icon"></div>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+
+        var hourNode = document.querySelector("#wrap > .hour");
+        var minNode = document.querySelector("#wrap > .min");
+        var secNode = document.querySelector("#wrap > .sec");
+
+
+
+        var ulNode = document.querySelector("#wrap > ul");
+        var styleNode = document.createElement("style");
+        var cssText = "";
+        var liHtml = "";
+        for (var i = 0; i < 60; i++) {
+            liHtml += "<li></li>";
+            cssText += "ul > li:nth-child(" + (i + 1) + "){transform: rotate(" + (i * 6) + "deg);}";
+        }
+        ulNode.innerHTML = liHtml;
+        styleNode.innerHTML = cssText;
+        document.head.appendChild(styleNode);
+
+        move();
+        setInterval(move, 1000);
+
+        function move() {
+            var date = new Date();
+            var s = date.getSeconds();
+            var m = date.getMinutes() + s / 60;
+            var h = date.getHours() + m / 60;
+
+            hourNode.style.transform = "rotate(" + (30 * h) + "deg)";
+            minNode.style.transform = "rotate(" + (6 * m) + "deg)";
+            secNode.style.transform = "rotate(" + (6 * s) + "deg)";
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+</script>
+
+</html>

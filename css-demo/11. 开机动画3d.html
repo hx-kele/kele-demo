@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开机动画2d版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #wrap {
+            height: 100%;
+            position: relative;
+            background-color: skyblue;
+            perspective: 200px;
+            /* 搭建舞台 */
+        }
+
+        #wrap>.inner {
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+
+        }
+
+        @keyframes kele {
+            0% {
+                transform: translate3d(-50%, -50%, 0) rotateY(0deg);
+            }
+
+            100% {
+                transform: translate3d(-50%, -50%, 0) rotateY(360deg);
+            }
+        }
+
+
+
+        #wrap>.inner>img {
+            width: 30%;
+            margin-top: -50px;
+            animation: kele 3s linear infinite;
+        }
+
+        #wrap>.inner>p,
+        #wrap>.inner>img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) rotateY(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="inner">
+            <img src="img/logo.png" />
+            <p>已加载0%</p>
+
+        </div>
+    </div>
+</body>
+<!-- 设置加载进度 -->
+<!-- <script src="js/data.js"></script> -->
+<!-- <script>
+    window.onload = function () {
+        // 获取页面所有需要加载的图片的对象数组
+        var pNode = document.querySelector("#wrap > .inner >p");
+        var flag = 0;
+        // 加载进度百分比
+        var arr=[];
+        for(item in imgData){
+            arr=arr.concat(imgData[item]);
+        }
+        for(var i=0;i<arr.length;i++){
+            var img = new Image();
+            img.src=arr[i];
+            img.onload=function(){
+                flag++;
+                pNode.innerHTML="已加载"+(Math.round(flag/arr.length*100))+"%";
+            }
+            img.onerror=function(){
+                console.log("加载出错");
+            }
+
+        }
+    }
+</script> -->
+
+</html>

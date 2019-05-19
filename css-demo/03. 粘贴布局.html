@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>粘贴布局</title>
+    <style>
+
+        /* 
+            总结：
+                设置主容器最小高度为100%；
+                设置页面根元素高度100%；
+                设置尾部容器的margin-top等于其height；
+                设置主容器的padding-bottom等于尾部容器的height；
+         */
+
+        *{margin: 0;padding: 0}
+
+        html,body{height: 100%;}
+
+        #wrap{
+            min-height: 100%;
+            background-color: orange;
+        }
+        .main{
+            font-size: 24px;
+            text-align: center;
+            padding-bottom: 50px;
+        }
+        #footer{
+            background-color: greenyellow;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 28px;
+            margin-top: -50px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="main">
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+            Kele-CSS-demo <br />
+        </div>
+    </div>
+    <div id="footer">
+        Footer-Kele-demo
+    </div>
+</body>
+</html>
